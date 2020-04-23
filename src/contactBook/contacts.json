@@ -1,0 +1,20 @@
+[
+  {
+    "firstName": "Ivan",
+    "lastName": "Ivanov",
+    "phone": "0888 123 456",
+    "email": "i.ivanov@gmail.com"
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Kirov",
+    "phone": "0988 456 789",
+    "email": "jordk@gmail.com"
+  },
+  {
+    "firstName": "dfsfsfs",
+    "lastName": "dfsf",
+    "phone": "0988 456 789",
+    "email": "jordk@gmail.com"
+  }
+]
