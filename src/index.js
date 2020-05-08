@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 
-import Test_ from './FirstExams/Test_'
+
+//import Test_ from './FirstExams/Test_'
 //import ContactBook from './contactBook/ContactBook'
+//import App from './exam1/App'
+//import App from './exam1a/App'
+import App from './eventsExamL/App'
+
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-   <Test_ dataName="Test" dataInt={3} />
+   <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

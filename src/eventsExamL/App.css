@@ -1,0 +1,21 @@
+/*Main slider*/
+
+.mainSlider {
+	height: 240px;
+	
+	border: 2px solid blue
+}
+
+.listIcon{
+	height: 50px;
+	border: 2px solid coral
+}
+
+.ActiveDiv{
+background-color: rgb(201, 76, 76);
+}
+
+
+.NonActiveDiv{
+background-color: transparent;
+}
