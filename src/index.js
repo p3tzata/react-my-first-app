@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import {BrowserRouter} from 'react-router-dom'
 
 //import Test_ from './FirstExams/Test_'
 //import ContactBook from './contactBook/ContactBook'
 //import App from './exam1/App'
 //import App from './exam1a/App'
 //import App from './eventsExamL/App'
-import App from './firstForm/App'
-
+//import App from './firstRouter/App'
+import App from './PostNonRedux/App'
 
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-   <App />
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+    
+   
   </React.StrictMode>,
   document.getElementById('root')
 );

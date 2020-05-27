@@ -1,0 +1,11 @@
+.navLink {
+
+	border: 0.1em solid black;
+	
+
+}
+
+
+.activeLink {
+	background-color: darkgray;
+}
