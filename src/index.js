@@ -8,20 +8,38 @@ import {BrowserRouter} from 'react-router-dom'
 //import App from './exam1a/App'
 //import App from './eventsExamL/App'
 //import App from './firstRouter/App'
-import App from './PostNonRedux/App'
+//import App from './PostNonRedux/App'
 
+import App from './FirstRedux/App'
+import AppStore from './FirstRedux/store/AppStore'
+import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={AppStore}>
+      <App />
+    </Provider>
+
+
+
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+/*
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <App />
     </BrowserRouter>
-    
-   
+
+
   </React.StrictMode>,
   document.getElementById('root')
 );
+*/
 
 /*
 
