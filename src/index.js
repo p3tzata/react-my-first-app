@@ -10,8 +10,8 @@ import {BrowserRouter} from 'react-router-dom'
 //import App from './firstRouter/App'
 //import App from './PostNonRedux/App'
 
-import App from './FirstRedux/App'
-import AppStore from './FirstRedux/store/AppStore'
+import App from './FirstReduxExam1/App'
+import AppStore from './FirstReduxExam1/store/AppStore'
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 

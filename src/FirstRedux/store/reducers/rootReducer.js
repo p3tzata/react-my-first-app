@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
 
-import calculatorReducer from './calculatorReducer'
+import {calculatorReducer,calculatorChangeOperationReducer,calculatorSetValueAReducer}  from './calculatorReducer'
 import calculatorLogReducer from './calculatorLogReducer'
 
 const rootReducer = combineReducers({
   calculatorReducer,
+  calculatorChangeOperationReducer,
+  calculatorSetValueAReducer,
   calculatorLogReducer
 });
 export default rootReducer;

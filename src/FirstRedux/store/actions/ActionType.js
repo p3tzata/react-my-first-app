@@ -1,3 +1,6 @@
 export const ADD = 'ADD';
 export const SUBTRACK = 'SUBTRACK';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const CHANGE_OPERATION='CHANGE_OPERATION'
+export const SET_VALUE_INPUT_A='SET_VALUE_INPUT_A'
+export const SET_VALUE_INPUT_B='SET_VALUE_INPUT_B'
