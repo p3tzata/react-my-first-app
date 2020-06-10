@@ -16,8 +16,8 @@ import * as serviceWorker from './serviceWorker';
 
 //import App from './FirstReduxExam1/App'
 //import AppStore from './FirstReduxExam1/store/AppStore'
-import App from './FirstReduxThunkExam1/App'
-import AppStore from './FirstReduxThunkExam1/store/AppStore'
+import App from './FirstReduxThunkExam2/App'
+import AppStore from './FirstReduxThunkExam2/store/AppStore'
 
 
 
