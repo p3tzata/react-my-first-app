@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
+import { Provider } from 'react-redux';
+import * as serviceWorker from './serviceWorker';
+
+
 
 //import Test_ from './FirstExams/Test_'
 //import ContactBook from './contactBook/ContactBook'
@@ -10,16 +14,21 @@ import {BrowserRouter} from 'react-router-dom'
 //import App from './firstRouter/App'
 //import App from './PostNonRedux/App'
 
-import App from './FirstReduxExam1/App'
-import AppStore from './FirstReduxExam1/store/AppStore'
-import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+//import App from './FirstReduxExam1/App'
+//import AppStore from './FirstReduxExam1/store/AppStore'
+import App from './FirstReduxThunkExam1/App'
+import AppStore from './FirstReduxThunkExam1/store/AppStore'
+
+
+
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={AppStore}>
-      <App />
+        <Router>
+            <App />
+        </Router>
     </Provider>
 
 
