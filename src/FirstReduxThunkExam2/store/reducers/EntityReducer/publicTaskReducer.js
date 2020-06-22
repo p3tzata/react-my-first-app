@@ -1,4 +1,4 @@
-import * as ActionType  from '../actions/ActionType'
+import * as ActionType  from '../../actions/ActionType'
 
 const initState = {
   resultSet:[{  }],

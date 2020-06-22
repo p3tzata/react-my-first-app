@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 
 const Preloader = ({loading}) => {
-console.log('echooo')
+
     if (!loading) return null;
     return (<div className="preloader">
             {loading && <p>Loading, please wait &hellip;</p>}

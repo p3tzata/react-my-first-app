@@ -6,8 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css'
-import * as ActionCreator from './store/actions/ActionCreator'
-import * as ActionType  from './store/actions/ActionType'
+
 
 import Header from './component/common/Header'
 import MainView from './component/common/MainView'

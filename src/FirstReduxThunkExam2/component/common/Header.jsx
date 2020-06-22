@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux';
 import './NavBar/sideNavBar.css'
 import GuestNavBar from './NavBar/GuestNavBar'
+import UserNavBar from './NavBar/UserNavBar'
 
 class Header extends Component {
 
@@ -12,10 +13,12 @@ constructor(props) {
 
 
 render() {
-    return <div>
-      <GuestNavBar/>
+  if (this.props.appState.account.user.UserId) {
+    return <UserNavBar UserName={this.props.appState.account.user.Username}/>
 
-    </div>
+  } else {
+    return <GuestNavBar/>
+  }
 
 
 }

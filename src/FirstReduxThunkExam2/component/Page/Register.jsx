@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import Form from '../common/HtmlForm/Form'
 import InputFormField from '../common/HtmlForm/InputFormField'
 import InputFormSubmit from '../common/HtmlForm/InputFormSubmit'
-import * as ActionCreator from '../../store/actions/ActionCreator'
+import * as AccountActionCreator from '../../store/actions/FrameWorkActionCreator/AccountActionCreator'
 import toastr from 'toastr';
 
 
@@ -13,10 +13,11 @@ import toastr from 'toastr';
 
    constructor(props) {
      super(props)
-     this.state={forceValidate:0,email:'',username:''}
+     this.state={forceValidate:0,email:'',username:'',password:'',passwordConfirm:''}
      this.onChangeSetState=this.onChangeSetState.bind(this)
      this.onSubmit=this.onSubmit.bind(this)
-
+     this.onValidate_password=this.onValidate_password.bind(this)
+     this.onValidate_passwordConfirm=this.onValidate_passwordConfirm.bind(this)
    }
 
 
@@ -28,37 +29,66 @@ import toastr from 'toastr';
      e.preventDefault();
      this.setState({forceValidate: 1})
      if (this.validateForm()===-1) {
-       console.log('validation fail')
+       //console.log('validation fail')
      } else {
         //console.log('validation ok')
-    const promise = this.props.appDispather.register({username: this.state.username, password: '1111',confirmPassword:'1111' });
-    promise.then( (response) => {
+    const promise = this.props.appDispather.register({username: this.state.username, password: this.state.password,confirmPassword:this.state.passwordConfirm });
+    promise
+    .then(response => {
+
+        const statusCodeIsOk = response.statusCodeIsOk;
+       response.data.then( data => { if(statusCodeIsOk) {
+
+                                      let message =''
+                                      if (data.message!=null) {
+                                          message=data.message
+                                      }
+
+                                      toastr.success('Successfull: ' + message)
+
+                                  } else {
+                                    let message =''
+                                    if (data.errorMsg!=null) {
+                                        message=data.errorMsg
+                                    }
+                                      toastr.error('Error: ' + message)
+                                  }
+                                  } )
+     })
+    .catch ((error) => {toastr.error('Error in registration: ' + error)} )
+
+  /*  promise.then( (response) => {
+      if (response!=null) {
+
         if (response.ok) {
-            toastr.success('Success full registration')
+            toastr.success('Successfull registration')
         } else {
+
           const data =  response.json();
           data.then( (data) => {
 
           let message =''
-          if (data.errorMsg9999ss!=null) {
+          if (data.errorMsg!=null) {
               message=data.errorMsg
           }
 
           toastr.error('Erro in registration: ' + message)
         })
         }
+      } else {
+        toastr.error('No responding')
+      }
 
+    })*/
 
-    }  )
-
-     }
-
-   }
+     }}
 
    validateForm(){
 
      if (this.onValidate_email(this.state.email)===-1 ||
-         this.onValidate_username(this.state.username)===-1) {
+         this.onValidate_username(this.state.username)===-1 ||
+         this.onValidate_password(this.state.password)===-1 ||
+         this.onValidate_passwordConfirm(this.state.password ,this.state.passwordConfirm)===-1) {
 
             return -1;
          }
@@ -90,6 +120,29 @@ import toastr from 'toastr';
      }
 
    }
+
+   onValidate_password(text){
+
+     if(Number(text.length)<6) {
+       return -1;
+     } else {
+       return 1
+     }
+
+   }
+
+   onValidate_passwordConfirm(password,passwordConfirm){
+
+
+       if (password!=passwordConfirm) {
+         return -1
+       } else {
+         return 1
+       }
+
+
+   }
+
 
 
    render() {
@@ -126,6 +179,29 @@ import toastr from 'toastr';
                   onValidatePositiveFeedBackText="This input value is valid"
                   onValidateNegativeFeedBackText="String must be more then 5 symbols"
                   />
+                  <InputFormField
+                    label='Password'  id='password'  name='password'   type='password'
+                    value={this.state.password}
+                    onChangeSetState={this.onChangeSetState}
+                    isForceToValidate={this.state.forceValidate}
+                    onValidate={() => this.onValidate_password(this.state.password)}
+                    onValidateState={this.onValidateState}
+                    onValidatePositiveFeedBackText="This input value is valid"
+                    onValidateNegativeFeedBackText="String must be more then 6 symbols"
+                    />
+                  <InputFormField
+                      label='Password Confirm'  id='passwordConfirm'  name='passwordConfirm'   type='password'
+                      value={this.state.passwordConfirm}
+                      onChangeSetState={this.onChangeSetState}
+                      isForceToValidate={this.state.forceValidate}
+                      onValidate={() => this.onValidate_passwordConfirm(this.state.password,this.state.passwordConfirm)}
+                      onValidateState={this.onValidateState}
+                      onValidatePositiveFeedBackText="This input value is valid"
+                      onValidateNegativeFeedBackText="The passwords are dismatch "
+                      />
+
+
+
                 <br/>
                 <InputFormSubmit
                     label='Register'
@@ -163,7 +239,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {appDispather: {
     register: (payload) => {
-      return  dispatch(ActionCreator.register(payload))
+      return  dispatch(AccountActionCreator.register(payload))
     }
 
       }
