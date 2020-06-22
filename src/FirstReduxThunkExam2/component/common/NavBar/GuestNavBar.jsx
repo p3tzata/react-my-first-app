@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
-import {Route} from 'react-router-dom'
+
 import NavBar from './NavBar.jsx'
 
 
 
-	class GuestNavBar extends React.Component {
+	class GuestNavBar extends Component {
 
 		 mainDataLink = { "Home": "/"};
 		 rightDataLink = { "Login": "/login", "Register": "/register"};
 		 sideNavBarDataLink = { "Login": "/login", "Register": "/register"};
-
-
-		constructor(props) {
-			super(props)
-
-		}
-
-
 
 
 		render() {

@@ -102,7 +102,7 @@ import toastr from 'toastr';
 
    onValidate_email(text){
 
-     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,3})+$/.test(text))
+     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{1,3})+$/.test(text))
        {
          return 1
        }
@@ -134,7 +134,7 @@ import toastr from 'toastr';
    onValidate_passwordConfirm(password,passwordConfirm){
 
 
-       if (password!=passwordConfirm) {
+       if (password!==passwordConfirm) {
          return -1
        } else {
          return 1

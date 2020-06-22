@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import {Route, Switch, withRouter} from 'react-router-dom'
 import Login from '../Page/Login'
 import Register from '../Page/Register'
 import Home from '../Page/Home'
@@ -9,16 +9,12 @@ import Preloader from '../Preloader'
 
 class MainView extends Component {
 
-constructor(props) {
-  super(props)
-
-}
 
 componentDidUpdate() {
 
   if (Number(this.props.appState.account.isRedirectToHome)===1) {
   this.props.history.push("/")
-  console.log('redirect to home')
+  //console.log('redirect to home')
   }
 
 }

@@ -1,5 +1,5 @@
 import * as ActionType  from '../ActionType'
-import { withRouter} from 'react-router-dom'
+
 
 export function begin_ajax() {
   return {

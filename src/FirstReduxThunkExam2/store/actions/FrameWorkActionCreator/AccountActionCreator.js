@@ -1,7 +1,5 @@
 import * as ActionType  from '../../actions/ActionType'
 import * as Const  from '../../../Config/constant'
-import * as CustomError from '../../../Error/CustomError'
-import * as AjaxActionCreator from './AjaxActionCreator'
 import * as unitFunc from '../../../Util/func'
 
 export function login_success(paylaod) {

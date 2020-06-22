@@ -15,14 +15,15 @@ export function wrappedFetch(dispatch, url, requestOptions) {
           return(response)
     })
     //.catch((err) => {dispatch(fail_ajax()); console.log(err);return err})
-    .catch((err) => {dispatch(AjaxActionCreator.fail_ajax());
+    .catch((err) => {
+      dispatch(AjaxActionCreator.fail_ajax());
       if (err instanceof CustomError.TokenExpired) {
         dispatch(AccountActionCreator.auth_token_expired())
         throw new CustomError.TokenExpired()
 
       }
 
-      throw new Error('UnHandlered error: ' + err)
+      throw new Error(err.message)
     })
 
 }
@@ -37,7 +38,7 @@ if (!response) {
 
     const loginUrl = `${Const.api_url}/login`
 
-    if (response.status === 403 && loginUrl!=response.url) {
+    if (response.status === 403 && loginUrl!==response.url) {
 
      console.log('Should logout')
       throw new CustomError.TokenExpired()

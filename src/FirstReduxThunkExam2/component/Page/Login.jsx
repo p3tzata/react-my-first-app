@@ -4,7 +4,6 @@ import Form from '../common/HtmlForm/Form'
 import InputFormField from '../common/HtmlForm/InputFormField'
 import InputFormSubmit from '../common/HtmlForm/InputFormSubmit'
 import * as AccountActionCreator from '../../store/actions/FrameWorkActionCreator/AccountActionCreator'
-import * as CustomError from '../../Error/CustomError'
 import toastr from 'toastr';
 import { withRouter} from 'react-router-dom'
 
@@ -38,10 +37,10 @@ import { withRouter} from 'react-router-dom'
         const statusCodeIsOk = response.statusCodeIsOk;
        response.data.then( data => { if(statusCodeIsOk) {
 
-                                      let message =''
-                                      if (data.message!=null) {
-                                          message=data.message
-                                      }
+                                      //let message =''
+                                      //if (data.message!=null) {
+                                      //    message=data.message
+                                    //  }
                                       //console.log(data)
                                       this.props.appDispather.login_success(data)
                                       //this.props.history.push('/')
@@ -55,7 +54,7 @@ import { withRouter} from 'react-router-dom'
                                   }
                                   } )
      })
-    .catch ((error) => {toastr.error('Error in login: ' + error)} )
+    .catch ((error) => {toastr.error(error.message)} )
 
      }
 

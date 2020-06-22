@@ -1,6 +1,6 @@
-import * as ActionType  from '../ActionType'
+
 import * as Const  from '../../../Config/constant'
-import * as CustomError from '../../../Error/CustomError'
+
 import * as unitFunc from '../../../Util/func'
 
 

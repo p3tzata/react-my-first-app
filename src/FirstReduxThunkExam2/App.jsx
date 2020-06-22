@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import {Route, Switch} from 'react-router-dom'
-import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css'
 
+import 'toastr/build/toastr.min.css'
+import * as AccountActionCreator from './store/actions/FrameWorkActionCreator/AccountActionCreator'
 
 import Header from './component/common/Header'
 import MainView from './component/common/MainView'
@@ -17,6 +15,19 @@ import MainView from './component/common/MainView'
 
 
 componentDidMount(){
+
+  const account = JSON.parse(localStorage.getItem('account'));
+  if (account!=null) {
+
+    if (account.UserId!=null) {
+
+    if (account.UserId!=='undefined' && this.props.appState.account.user.UserId!=='undefined' ) {
+    const payload = account;
+    this.props.appDispather.login_success(payload)
+  }
+ }
+}
+
 
 
 }
@@ -50,7 +61,11 @@ function mapStateToProps(state) {
 
 
 function mapDispatchToProps(dispatch) {
-  return {appDispather: {}
+  return {appDispather: {
+    login_success: (payload) => {
+      return  dispatch(AccountActionCreator.login_success(payload))
+    }
+  }
 
 
   }

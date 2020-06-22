@@ -8,9 +8,16 @@ export function accountReducer(state=defaultState,action)
   switch (action.type) {
 
     case(ActionType.LOGIN_SUCCESS):
-    return Object.assign({},{isExpiredAuth:0},{isRedirectToHome:1},{user:action.paylaod})
+
+    const newState=Object.assign({},{isExpiredAuth:0},{isRedirectToHome:1},{user:action.paylaod})
+
+    localStorage.setItem('account', JSON.stringify(action.paylaod));
+    //return Object.assign({},{isExpiredAuth:0},{isRedirectToHome:1},{user:action.paylaod})
+    return Object.assign({},newState);
+
 
     case(ActionType.LOGOUT):
+    localStorage.setItem('account', JSON.stringify(defaultState));
     return Object.assign({},defaultState)
 
     case(ActionType.AUTH_TOKEN_EXPIRED):

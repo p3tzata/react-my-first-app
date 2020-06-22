@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Route,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './sideNavBar.css'
 
 
 
-export default class SideNavBar extends React.Component {
+export default class SideNavBar extends Component {
 
 	constructor(props) {
 		super(props)
@@ -41,7 +41,7 @@ export default class SideNavBar extends React.Component {
 <div>
 <span className="openButtonSideBarNav navbar-brand" onClick={this.openNav}>&#9776; Menu</span>
 <div style={this.state.sideNavStyle} id="mySidenav" className="sidenav">
-	<a href="#" className="closebtn" onClick={this.closeNav}>&times;</a>
+	<a href="/#" className="closebtn" onClick={this.closeNav}>&times;</a>
 	{sideNavBarDataLink}
 </div>
 </div>

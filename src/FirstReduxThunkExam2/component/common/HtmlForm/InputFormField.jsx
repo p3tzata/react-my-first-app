@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux';
-
 
 class InputFormField extends Component {
 
@@ -33,7 +30,7 @@ class InputFormField extends Component {
      this.validate();
    }
 
-  if (Number(this.props.isForceToValidate) != Number(prevProps.isForceToValidate)) {
+  if (Number(this.props.isForceToValidate) !== Number(prevProps.isForceToValidate)) {
 
       if (this.props.isForceToValidate===1) {
       this.validate();

@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import {Route,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import SideNavBar from './SideNavBar'
 
 
 
-export default class NavBar extends React.Component {
+export default class NavBar extends Component {
 
-	constructor(props) {
-		super(props)
-
-
-	}
 
 
 
