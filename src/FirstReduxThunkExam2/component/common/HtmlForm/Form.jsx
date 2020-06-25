@@ -8,7 +8,7 @@ class Form extends Component {
   render() {
 
     return (
-      <form onSubmit={this.props.onSubmit}>
+      <form className={this.props.className} onSubmit={this.props.onSubmit}>
       {this.props.children}
      </form>
 

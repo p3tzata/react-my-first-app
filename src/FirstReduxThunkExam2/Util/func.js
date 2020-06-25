@@ -48,3 +48,27 @@ if (!response) {
     return {statusCodeIsOk: response.ok, statusCode: response.status, data: response.json().catch( (err)=>{ return err } )    } ;
   //  return {resposneStatusIsOk: response.ok, statusCode: response.status, data: response.json().catch( (err)=>{ throw new CustomError.NoValidJson()  } )    } ;
 }
+
+export function generatePageableString(pageable) {
+  //return 'page='+ pageable.pageNumber +'&' + 'size='+pageable.pageSize
+  return `page=${pageable.RequestPageNumber}&size=${pageable.pageSize}`
+}
+
+export function addRequestParamToQueryString(queryString,paramObj) {
+  //return 'page='+ pageable.pageNumber +'&' + 'size='+pageable.pageSize
+  return  queryString+'&'+paramObj.name+'='+paramObj.value;
+}
+
+
+export function consolidateAfterDeleting(sourceArray,fndFunction,executeSetState) {
+
+  const fndIndex = sourceArray.findIndex( fndFunction  );
+  console.log(fndIndex);
+  if (Number(fndIndex)>=0) {
+  let newArray;
+  newArray=[...sourceArray.slice(0,fndIndex), ...sourceArray.slice(fndIndex+1)  ]
+  executeSetState(newArray)
+
+}
+
+}
