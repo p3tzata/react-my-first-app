@@ -7,6 +7,53 @@ import * as unitFunc from '../../../Util/func'
 
 
 
+export function getItem(user,payload) {
+  return (dispatch) => {
+
+
+//console.log(queryString)
+
+  const url = `${Const.api_url}/posts/${payload.postId}`
+    const requestOptions = {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json','Accept':'application/json',
+        'Authorization': user.Authorization
+      }
+	};
+     return unitFunc.wrappedFetch(dispatch, url, requestOptions)
+
+  };
+
+}
+
+
+export function editItem(user,payload) {
+  return (dispatch) => {
+
+
+//console.log(queryString)
+
+  const url = `${Const.api_url}/posts/${payload.postId}`
+    const requestOptions = {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json','Accept':'application/json',
+        'Authorization': user.Authorization},
+        body: JSON.stringify({
+    							postId: payload.postId,
+    							description: payload.description,
+    							title: payload.title,
+    					  	url: payload.url })
+
+	};
+     return unitFunc.wrappedFetch(dispatch, url, requestOptions)
+
+  };
+
+}
+
+
+
+
 export function getItems(user,payload) {
   return (dispatch) => {
 

@@ -14,6 +14,7 @@ import InputFormSubmit from '../common/HtmlForm/InputFormSubmit'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import * as utilFunct from '../../Util/func'
+import PostDetailModal from '../common/modal/PostDetailModal'
 
 
  class AccountHome extends Component {
@@ -21,11 +22,15 @@ import * as utilFunct from '../../Util/func'
  constructor(props) {
    super(props)
    this.state={posts: [],querySearchString:'',forceValidate:0,
-     pageable: {pageSize:3,RequestPageNumber:0,ResponsePageNumber:0,totalPages:0}};
+     pageable: {pageSize:3,RequestPageNumber:0,ResponsePageNumber:0,totalPages:0},
+     postModalPayload: {isShow:false, postId:0},
+
+   };
    this.onChangeSetState=this.onChangeSetState.bind(this)
    this.onSubmit=this.onSubmit.bind(this)
    this.confirmDelete=this.confirmDelete.bind(this)
    this.consolidateAfterDeleting=this.consolidateAfterDeleting.bind(this);
+   this.hideModalDetail=this.hideModalDetail.bind(this);
  }
 
 
@@ -65,8 +70,8 @@ import * as utilFunct from '../../Util/func'
 
 confirmDelete(postId) {
     confirmAlert({
-       title: 'Confirm to submit',
-       message: 'Are you sure to do this.',
+       title: 'Confirm before submit',
+       message: 'Are you sure to delete.',
        buttons: [
          {
            label: 'Yes',
@@ -128,6 +133,30 @@ onValidate_querySearchString(text){
 }
 
 
+showModalDetail(postId){
+
+  this.setState({postModalPayload: {isShow:true, postId:postId} });
+
+}
+
+hideModalDetail(){
+console.log("debug")
+  this.setState({postModalPayload: {isShow:false, postId:0} });
+
+}
+
+consolidateAfterEditing(payload) {
+  console.log(payload);
+  let sourceArray=this.state.posts;
+  let executeSetState=(newArray) => {this.setState({posts: newArray})};
+  let fndFunction = (e) => {return Number(e.postId)===Number(payload.postId)}
+  utilFunct.consolidateAfterEditing(sourceArray,fndFunction,executeSetState,payload)
+
+}
+
+
+
+
 deleteItem(payload){
 const promise =  this.props.appDispather.deleteItem(this.props.appState.account.user,payload)
 promise
@@ -160,7 +189,7 @@ if (error instanceof CustomError.TokenExpired) {
 }
 
 consolidateAfterDeleting(postId) {
-  
+
   let sourceArray=this.state.posts;
   let executeSetState=(newArray) => {this.setState({posts: newArray})};
   let fndFunction = (e) => {return Number(e.postId)===Number(postId)}
@@ -261,7 +290,7 @@ if (error instanceof CustomError.TokenExpired) {
                //console.log(Number(el.author.id))
                return <div key={el.postId} className="col-md-4">
                <div className="card text-white bg-primary">
-                 <PostCardBody  payload={el} onDeleteClick={this.confirmDelete} isDeleteable={Number(this.props.appState.account.user.UserId) === Number(el.author.id) ? 'true' : 'false' } />
+                 <PostCardBody  payload={el} onDetailClick={this.showModalDetail.bind(this)} onDeleteClick={this.confirmDelete} isDeleteable={Number(this.props.appState.account.user.UserId) === Number(el.author.id) ? 'true' : 'false' } />
                </div>
              </div>})
 
@@ -273,9 +302,9 @@ if (error instanceof CustomError.TokenExpired) {
                <Pagination onChangeRequestPageNumber={this.changeRequestPageNumber.bind(this)} pageable={this.state.pageable} maxForwardPage='2'/>
              </div>
            </div>
-         </div>;
+         </div>
 
-
+<PostDetailModal payload={this.state.postModalPayload} handleConsolideAfterEditing={this.consolidateAfterEditing.bind(this)}  handlerHideModal={this.hideModalDetail} />
 
 
       </div>

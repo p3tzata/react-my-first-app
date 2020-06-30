@@ -14,8 +14,8 @@ export default class PostCardBody extends Component {
       {this.props.payload.title}
     </footer>
     <div className="pull-right">
-      <a href="details.html" className="btn btn-info">
-        Details
+      <a href="/#" onClick={() => {this.props.onDetailClick(this.props.payload.postId)}} className="btn btn-info">
+        Edit
       </a>
 
       { this.props.isDeleteable==="true" ?

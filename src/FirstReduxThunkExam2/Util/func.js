@@ -70,5 +70,16 @@ export function consolidateAfterDeleting(sourceArray,fndFunction,executeSetState
   executeSetState(newArray)
 
 }
+}
 
+export function consolidateAfterEditing(sourceArray,fndFunction,executeSetState,object) {
+
+  const fndIndex = sourceArray.findIndex( fndFunction  );
+  console.log(fndIndex);
+  if (Number(fndIndex)>=0) {
+  let newArray;
+  newArray=[...sourceArray.slice(0,fndIndex), object , ...sourceArray.slice(fndIndex+1)  ]
+  executeSetState(newArray)
+
+  }
 }
